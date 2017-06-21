@@ -4,7 +4,7 @@ import 'view.dart';
 import 'dart:async';
 
 ///Der Controller der die Komunikation zwischen dem SpielModel und der
-///View Steuert
+///View Steuert hi
 //TODO Implementieren
 class Controller {
 
