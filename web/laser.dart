@@ -6,8 +6,9 @@ class Laser extends Koerperform {
 
   ///Laser Kontruktor
   ///Ruft den super Konstruktor von Koerperform auf
-  Laser(String _farbe, Koordinaten _position, int _gH,
-      int _gV, int _id, List<Koordinaten> _form)
-      : super(_farbe, _position, _gH, _gV, _id, _form);
+  Laser(String _farbe, Koordinaten _position, int _geschwindigkeitHorizontal,
+      int _geschwindigkeitVertikal, int _id, List<Koordinaten> _form, int _damageValue, int _lifeValue, int _lebenAnzahl)
+      : super(_farbe, _position, _geschwindigkeitHorizontal,
+      _geschwindigkeitVertikal, _id, _form, _damageValue, _lifeValue, _lebenAnzahl);
 
 }
