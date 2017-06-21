@@ -1,3 +1,7 @@
+/**
+ * Author: Julian Parr, Jan H. Fiß
+ */
+
 import 'level.dart';
 import 'koerperform.dart';
 import 'raumschiff.dart';
@@ -9,9 +13,9 @@ import 'xmlLoader.dart';
 ///Das SpielModel
 //TODO Fehlende funktionalitäten implementieren
 class SpielModel {
-  int _spielfeldX = 18;
-  int _spielfeldY = 32;
-  int _highscoreGlobal = 0;
+
+  int _spielfeldX;
+  int _spielfeldY;
   List<Raumschiff> _spielerRS = [];
   List<GegnerRaumschiff> _gegnerRS = [];
   List<Level> _level = [];
@@ -19,25 +23,45 @@ class SpielModel {
   int _x = 0; //Wird gebraucht um eine x wert zwischen zu speichern
   int _y = 0; //Wird gebraucht um eine y wert zwischen zu speichern
   Koordinaten _dummy; //Wird gebraucht um eine Koordinate zwischen zu speichern
-  var collisionData = new List.generate(18, (i) => new List.filled(32,0));
+  List<List<List<int>>> _spielfeld;
   //TODO Fuer Beta Implementieren
   XMLLoader loader = null;
 
   ///Konstruktor des SpielModels
-  //TODO Implementiren
-  SpielModel();
+  //TODO Implementierung vollständig?
+  SpielModel(int grX, int grY) {
+    _spielfeldX = grX;
+    _spielfeldY = grY;
 
+    _spielfeld = new List(grX);
+    for (int i = 0; i <  grX; i++) {
 
-  void updatePos() {
-    _gegnerRS.forEach((rs) {
-      Koordinaten gegDummy = rs.getPos;
-      //Koordinaten nextPos = rs.getNextBewegung;
-     rs.updatePos(new Koordinaten(gegDummy.getX -1,
-          gegDummy.getY));
-    });
+      _spielfeld[i] = new List(grY);
+
+      for (int a = 0; a < grY; a++) {
+
+        _spielfeld[i][a] = new List();
+      }
+    }
   }
 
-  //Ubdatet die die Position für die spieler raumschiffe
+  //TODO ungetester RawCode, Code für Spielerraumschiff fehlt
+  void updateSpielfeld() {
+    _laser.forEach((r) {
+      //TODO drunk, fix later; jk koerperform anpassen
+      r.updatePos();
+    });
+
+    collisionDetection();
+
+    _gegnerRS.forEach((rs) {
+      rs.updatePos();
+    });
+
+    collisionDetection();
+  }
+
+  //Updatet die die Position für die spieler raumschiffe
   void updateSpielerPos(String richtung) {
     switch(richtung) {
       case("Links"):
@@ -64,11 +88,12 @@ class SpielModel {
     });
   }
 
+  //TODO Funktion an neue Funktionalität der Klasse anpassen
   String toHtml() {
     String content = "";
-    for(var row = 0; row < this._spielfeldX; row++) {
+    for(var row = 0; row < this._spielfeldY; row++) {
       content += "<tr>";
-      for(var col = 0; col < this._spielfeldY; col++) {
+      for(var col = 0; col < this._spielfeldX; col++) {
         content += "<td row = '${row}' col = '${col}'></td>";
       }
       content += "</tr>";
@@ -76,6 +101,14 @@ class SpielModel {
     return content;
   }
 
+  //TODO Implementieren
+  void collisionDetection() {
+    for (int x = 0; x < _spielfeldX; x++) {
+
+    }
+  }
+
+  //Getter
   int get getSpielfeldX => this._spielfeldX;
 
   int get getSpielfeldY => this._spielfeldY;
@@ -84,7 +117,7 @@ class SpielModel {
 
   List<GegnerRaumschiff> get getGegnerRS => this._gegnerRS;
 
-  //Inizialisiert für die alpha die spielerraumschiffe, gegnerraumschiffe
+  //Initialisiert für die alpha die spielerraumschiffe, gegnerraumschiffe
   void iniTESTData() {
 
     //Inizialisiert die spieler raumschiffe////////////////////////////////////
@@ -116,34 +149,5 @@ class SpielModel {
 
   //////////////////////////////////////////////////////////////////////////////
 
-  //TODO Implementieren
-  void collisionDetection(Raumschiff obj) {
-    List<GegnerRaumschiff> _dummy;
-    bool damagetaken = false;
-    this._gegnerRS.forEach((r) {
 
-      if(r != obj){
-        if((obj.getPos.getX - r.getPos.getX <= 6 && obj.getPos.getX - r.getPos.getX >= -6) && (obj.getPos.getY - r.getPos.getY <= 6 && obj.getPos.getY - r.getPos.getY >= -6)) {
-          _dummy.add(r);
-        }
-      }
-
-    });
-
-    _dummy.forEach((t) {
-      damagetaken = false;
-      t.getForm.forEach((f) {
-        if (damagetaken == false) {
-          obj.getForm.forEach((s) {
-            if(f.getY + t.getPos.getY == s.getY + obj.getPos.getY && f.getX + t.getPos.getX == s.getX + obj.getPos.getX) {
-              t.updateLife(true);
-              obj.updateLife(true);
-              damagetaken = true;
-            }
-          });
-        }
-      });
-    });
-
-  }
 }
