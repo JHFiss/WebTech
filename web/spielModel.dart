@@ -17,7 +17,7 @@ class SpielModel {
   int _spielfeldX;
   int _spielfeldY;
   List<Raumschiff> _spielerRS = [];
-  List<GegnerRaumschiff> _gegnerRS = [];
+  List<GegnerRaumschiff> _gegnerRS = [];5
   List<Level> _level = [];
   List<Laser> _laser = [];
   int _x = 0; //Wird gebraucht um eine x wert zwischen zu speichern
