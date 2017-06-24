@@ -17,13 +17,14 @@ class SpielModel {
   int _spielfeldX;
   int _spielfeldY;
   List<Raumschiff> _spielerRS = [];
-  List<GegnerRaumschiff> _gegnerRS = [];5
+  List<GegnerRaumschiff> _gegnerRS = [];
   List<Level> _level = [];
   List<Laser> _laser = [];
   int _x = 0; //Wird gebraucht um eine x wert zwischen zu speichern
   int _y = 0; //Wird gebraucht um eine y wert zwischen zu speichern
   Koordinaten _dummy; //Wird gebraucht um eine Koordinate zwischen zu speichern
   List<List<List<int>>> spielfeld;
+
   //TODO Fuer Beta Implementieren
   XMLLoader loader = null;
 
@@ -34,12 +35,10 @@ class SpielModel {
     _spielfeldY = grY;
 
     spielfeld = new List(grX);
-    for (int i = 0; i <  grX; i++) {
-
+    for (int i = 0; i < grX; i++) {
       spielfeld[i] = new List(grY);
 
       for (int a = 0; a < grY; a++) {
-
         spielfeld[i][a] = new List();
       }
     }
@@ -55,7 +54,6 @@ class SpielModel {
     _gegnerRS.forEach((rs) {
       rs.onTick();
     });
-
   }
 
 
@@ -63,13 +61,6 @@ class SpielModel {
   String toHtml() {
 
   }
+}
 
-  //Getter
-  int get getSpielfeldX => this._spielfeldX;
-
-  int get getSpielfeldY => this._spielfeldY;
-
-  Raumschiff get getSpielerRS => this._spielerRS[0];
-
-  List<GegnerRaumschiff> get getGegnerRS => this._gegnerRS;
 
