@@ -9,11 +9,12 @@ class GegnerRaumschiff extends Raumschiff{
 
   ///GegnerRaumschiff Konstruktor
   ///Ruft den super Konstruktor von Raumschiff auf
-  GegnerRaumschiff(String _farbe, Koordinaten _position, int _geschwindigkeitHorizontal,
-      int _geschwindigkeitVertikal, int _id, List<Koordinaten> _form, int _damageValue, int _lifeValue, int _lebenAnzahl, int _laserIDref,
+  GegnerRaumschiff(String _farbe, Koordinaten _position, int _id,
+                    List<Koordinaten> _form, int _damageValue, int _lifeValue,
+                    int _lebenAnzahl, int _laserIDref,
       this._bewegungsmuster, this._angriffsmuster)
-      : super(_farbe, _position, _geschwindigkeitHorizontal,
-      _geschwindigkeitVertikal, _id, _form, _damageValue, _lifeValue, _lebenAnzahl, _laserIDref);
+      : super(_farbe, _position, _id, _form, _damageValue, _lifeValue,
+              _lebenAnzahl, _laserIDref);
 
   ///Returned die naechste Position des gegnerRaumschiffes
   Koordinaten get getNextBewegung => _bewegungsmuster[++_bmIterator];

@@ -14,17 +14,21 @@ import 'xmlLoader.dart';
 //TODO Fehlende funktionalitäten implementieren
 class SpielModel {
 
-  int _spielfeldX;
-  int _spielfeldY;
-  List<Raumschiff> _spielerRS = [];
-  List<GegnerRaumschiff> _gegnerRS = [];
-  List<Level> _level = [];
-  List<Laser> _laser = [];
-  int _x = 0; //Wird gebraucht um eine x wert zwischen zu speichern
-  int _y = 0; //Wird gebraucht um eine y wert zwischen zu speichern
-  Koordinaten _dummy; //Wird gebraucht um eine Koordinate zwischen zu speichern
+  int _spielfeldX;  //Die Länge der X Achse des Spielfeldes
+  int _spielfeldY;  //Die Länge der Y Achse des Spielfeldes
+  List<Raumschiff> _spielerRS = new List(); //Die Spieler Raumschiffen
+  List<GegnerRaumschiff> _gegnerRS = [];  //Die Gegner Raumschiffe
+  List<Level> _level = new List(); //Die Level
+  List<Laser> _laser = [];  //Die Laser
+
+  //Das Spielfeld als "3 dimensionale Liste"
+  //1.ebene die x Achse
+  //2.ebene die y Achse
+  //3. ebene die raumschiffe die sich auf dieser Position befinden
   List<List<List<int>>> spielfeld;
-  XMLLoader loader = null;
+
+  //TODO XML über loader laden
+  XMLLoader loader = new XMLLoader(); //Lädt die XML Daten
 
   ///Konstruktor des SpielModels
   //TODO Implementierung vollständig?
@@ -75,15 +79,15 @@ class SpielModel {
         "<td row = '${0}' col = '${2}'></td>"
         "</tr>";
   }
-  //Id reichweitern
-  //Laser             100-199
-  //GegnerRaumschiffe 200-299
-  //SpielerRaumschiff 300-399
+
   //////////////////Ab hier erstellung der Testdaten////////////////////////////
+  //Id reichweitern           //
+  //Laser             100-199 //
+  //GegnerRaumschiffe 200-299 //
+  //SpielerRaumschiff 300-399 //
   //*******************Erstellung der Laser***********************************//
   Laser testLaser() {
-    Laser ret = new Laser("#FF0000", null, 1,
-        1, 100, null, 40, 30, 1);
+    Laser ret = new Laser("#FF0000", null, 100, null, 40, 30, 1);
     return ret;
   }
   //*******************Erstellung der Raumschiffes****************************//
@@ -92,7 +96,6 @@ class SpielModel {
     List<Koordinaten> r1Form = [new Koordinaten(-2, 1), new Koordinaten(-2, -1),
                                 new Koordinaten(-1, 0)];
     Raumschiff r1 = new Raumschiff("#58FAAC", new Koordinaten(4, 9),
-        1, 1,
         300, r1Form, 80, 100, 3, 100);
 
     return ret;
@@ -104,12 +107,50 @@ class SpielModel {
     List<Koordinaten> gr1Form = [ new Koordinaten(1, 1),
                                   new Koordinaten(1, -1)];
 
-    List<Koordinaten> bmGr1 = [];
-    List<Koordinaten> amGr1 = [];
+    //HEHEHE das wird lustig alle raumschiffe zu erstellen :)
+    List<Koordinaten> bmGr1 = [new Koordinaten(27, 4), new Koordinaten(26, 4),
+    new Koordinaten(25, 4), new Koordinaten(24, 4), new Koordinaten(23, 4),
+    new Koordinaten(22, 4), new Koordinaten(21, 4), new Koordinaten(20, 4),
+    new Koordinaten(20, 3), new Koordinaten(20, 4), new Koordinaten(20, 5),
+    new Koordinaten(20, 4), new Koordinaten(19, 4), new Koordinaten(18, 4),
+    new Koordinaten(17, 4), new Koordinaten(16, 4), new Koordinaten(15, 4),
+    new Koordinaten(14, 4), new Koordinaten(13, 4), new Koordinaten(13, 5),
+    new Koordinaten(13, 6), new Koordinaten(13, 7), new Koordinaten(13, 6),
+    new Koordinaten(12, 6), new Koordinaten(11, 6), new Koordinaten(10, 6),
+    new Koordinaten(9, 6), new Koordinaten(8, 6), new Koordinaten(7, 6),
+    new Koordinaten(6, 6), new Koordinaten(5, 6), new Koordinaten(4, 6),
+    new Koordinaten(3, 6), new Koordinaten(2, 6), new Koordinaten(1, 6), ];
+
+    List<Koordinaten> bmGr2 = [new Koordinaten(27, 12), new Koordinaten(26, 12),
+    new Koordinaten(25, 12), new Koordinaten(24, 12), new Koordinaten(23, 12),
+    new Koordinaten(22, 12), new Koordinaten(21, 12), new Koordinaten(20, 12),
+    new Koordinaten(20, 11), new Koordinaten(20, 12), new Koordinaten(20, 13),
+    new Koordinaten(20, 12), new Koordinaten(19, 12), new Koordinaten(18, 12),
+    new Koordinaten(17, 12), new Koordinaten(16, 12), new Koordinaten(15, 12),
+    new Koordinaten(14, 12), new Koordinaten(13, 12), new Koordinaten(13, 13),
+    new Koordinaten(13, 14), new Koordinaten(13, 15), new Koordinaten(13, 14),
+    new Koordinaten(12, 14), new Koordinaten(11, 14), new Koordinaten(10, 14),
+    new Koordinaten(9, 14), new Koordinaten(8, 14), new Koordinaten(7, 14),
+    new Koordinaten(6, 14), new Koordinaten(5, 14), new Koordinaten(4, 14),
+    new Koordinaten(3, 14), new Koordinaten(2, 14), new Koordinaten(1, 14), ];
+
+    List<bool> amGr1 = [false, false, true, false, true, false, true, false,
+      false, false, true, false, true, false, true, false, false, false,
+      true, false, true, false, false, true, false, true, false, false, true,
+      false, false, false, false];
+
     GegnerRaumschiff gr1 = new GegnerRaumschiff("#8904B1", new Koordinaten(28, 4),
-        1, 1,
         200, gr1Form, 40, 40, 1,
-        100, _bewegungsmuster, _angriffsmuster);
+        100, bmGr1, amGr1);
+
+    GegnerRaumschiff gr2 = new GegnerRaumschiff("#8904B1", new Koordinaten(28, 12),
+        200, gr1Form, 40, 40, 1,
+        100, bmGr2, amGr1);
+
+    ret.add(gr1);
+    ret.add(gr2);
+
+    return ret;
   }
 }
 

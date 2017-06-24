@@ -5,8 +5,6 @@ import 'koordinaten.dart';
 abstract class Koerperform {
   String _farbe = "HEXWERT";
   Koordinaten _position = new Koordinaten(0, 0);
-  int _geschwindigkeitHorizontal = 0;
-  int _geschwindigkeitVertikal = 0;
   int _id = 0;
   List<Koordinaten> _form = new List<Koordinaten>();
   int _damageValue = 0;
@@ -14,9 +12,8 @@ abstract class Koerperform {
   int _lebenAnzahl = 1;
 //Penis
   ///Der Konstruktor von Koerperform
-  Koerperform(this._farbe, this._position, this._geschwindigkeitHorizontal,
-      this._geschwindigkeitVertikal, this._id, this._form, this._damageValue,
-      this._lifeValue, this._lebenAnzahl);
+  Koerperform(this._farbe, this._position, this._id, this._form,
+      this._damageValue, this._lifeValue, this._lebenAnzahl);
 
   ///Returned die Position des Raumschiffes oder Lasers
   Koordinaten get getPos => this._position;
