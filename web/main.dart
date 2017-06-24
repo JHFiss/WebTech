@@ -7,7 +7,7 @@ import 'controller.dart';
 import 'spielModel.dart';
 
 void main() {
-  SpielModel _model = new SpielModel(32, 18);
+  SpielModel _model = new SpielModel(18, 32);
   View _view = new View(_model);
   Controller controller = new Controller(_view);
   _view.updateView("");

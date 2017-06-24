@@ -8,7 +8,7 @@ abstract class Koerperform {
   int _geschwindigkeitHorizontal = 0;
   int _geschwindigkeitVertikal = 0;
   int _id = 0;
-  List<Koordinaten> _form = null;
+  List<Koordinaten> _form = new List<Koordinaten>();
   int _damageValue = 0;
   int _lifeValue = 0;
   int _lebenAnzahl = 1;

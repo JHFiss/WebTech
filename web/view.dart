@@ -12,7 +12,10 @@ class View {
   View(SpielModel this._spielModel) {
     final validator = new NodeValidatorBuilder.common();
     validator.allowElement('td', attributes: ['row', 'col']);
+    final validator2 = new NodeValidatorBuilder.common();
+    validator2.allowElement('td', attributes: ['row', 'col']);
     querySelector('#gameTable').setInnerHtml(this._spielModel.toHtml(), validator: validator);
+    querySelector('#liveCounter').setInnerHtml(this._spielModel.liveToHtml(), validator: validator2);
   }
 
 
