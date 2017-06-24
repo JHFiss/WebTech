@@ -21,4 +21,10 @@ class GegnerRaumschiff extends Raumschiff{
   ///Returned ob das Raumschiff schießen soll oder nicht
   ///true falls ja, false wenn nicht
   bool get getNextSchuss => _angriffsmuster[++_amIterator];
+
+  //TODO Implementieren
+  @override
+  void _setPosition() {
+
+  }
 }

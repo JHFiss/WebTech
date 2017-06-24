@@ -11,4 +11,9 @@ class Laser extends Koerperform {
       : super(_farbe, _position, _geschwindigkeitHorizontal,
       _geschwindigkeitVertikal, _id, _form, _damageValue, _lifeValue, _lebenAnzahl);
 
+  //TODO Implementieren
+  @override
+  void _setPosition() {
+
+  }
 }

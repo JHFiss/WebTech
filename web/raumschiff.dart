@@ -15,5 +15,9 @@ class Raumschiff extends Koerperform {
   ///Returned die Laser ID referenze
   int get getLaserIDref => this._laserIDref;
 
-  //TODO updatePosÜberschreiben ???
+  //TODO Implementieren
+  @override
+  void _setPosition() {
+
+  }
 }
