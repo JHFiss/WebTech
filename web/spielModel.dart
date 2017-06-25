@@ -8,6 +8,7 @@ import 'gegnerRaumschiff.dart';
 import 'koordinaten.dart';
 import 'laser.dart';
 import 'xmlLoader.dart';
+import 'koerperform.dart';
 
 ///Das SpielModel
 //TODO Fehlende funktionalitäten implementieren
@@ -78,6 +79,16 @@ class SpielModel {
         "<td row = '${0}' col = '${2}'></td>"
         "</tr>";
   }
+  ///Spawnt neue Koerperform
+  //TODO konkrete Implementierung
+  void spawnEntity(Koerperform kf) {
+
+  }
+  ///Entfernt die Koerperform mit der uebergebenen id
+  //TODO konkrete Implementierung
+  void despawnEntity(int id) {
+
+  }
 
   //////////////////Ab hier erstellung der Testdaten////////////////////////////
   //Id reichweitern           //
@@ -107,6 +118,7 @@ class SpielModel {
                                   new Koordinaten(1, -1)];
 
     //HEHEHE das wird lustig alle raumschiffe zu erstellen :)
+    //TODO willst du nicht lieber relative Positionen nehmen, anstatt absoluter?
     List<Koordinaten> bmGr1 = [new Koordinaten(27, 4), new Koordinaten(26, 4),
     new Koordinaten(25, 4), new Koordinaten(24, 4), new Koordinaten(23, 4),
     new Koordinaten(22, 4), new Koordinaten(21, 4), new Koordinaten(20, 4),

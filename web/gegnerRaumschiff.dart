@@ -17,15 +17,23 @@ class GegnerRaumschiff extends Raumschiff{
               _lebenAnzahl, _laserIDref);
 
   ///Returned die naechste Position des gegnerRaumschiffes
+  //TODO noch sinnvoll? Raumschiff bewegt sich selbst
   Koordinaten get getNextBewegung => _bewegungsmuster[++_bmIterator];
 
   ///Returned ob das Raumschiff schießen soll oder nicht
   ///true falls ja, false wenn nicht
+  //TODO noch sinnvoll? Raumschiff schiesst selbst
   bool get getNextSchuss => _angriffsmuster[++_amIterator];
 
   //TODO Implementieren
   @override
   void _setPosition() {
 
+  }
+
+  //TODO zzt Pseudocode, für korrekte Implementierung muessen collisionDetection und setPosition funktionieren
+  void onTick() {
+    this._setPosition();
+    this.collisionDetection();
   }
 }

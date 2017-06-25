@@ -16,4 +16,10 @@ class Laser extends Koerperform {
   void _setPosition() {
 
   }
+
+  //TODO zzt Pseudocode, für korrekte Implementierung muessen collisionDetection und setPosition funktionieren
+  void onTick() {
+    this._setPosition();
+    this.collisionDetection();
+  }
 }

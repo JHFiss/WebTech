@@ -38,13 +38,11 @@ abstract class Koerperform {
   ///Returned die ID
   int get getID => this._id;
 
-  ///Updatet das raumschiff auf den nächsten Tick
-  void onTick() {
-
-  }
+  ///Updatet das raumschiff auf den nächsten Tick (konkrete Implementierung in den Kindklassen
+  void onTick();
 
   ///Das Raumschiff überprüft ob es mit einer anderen Koerperform auf der selben
-  ///Position steht
+  ///Position steht, Implementierung siehe onTick()
   //TODO Implementieren
   void collisionDetection() {
 
