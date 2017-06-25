@@ -153,7 +153,7 @@ class SpielModel {
   //SpielerRaumschiff 300-399 //
   //*******************Erstellung der Laser***********************************//
   Laser testLaser() {
-    Laser ret = new Laser("#FF0000", null, 100, null, 40, 30, 1);
+    Laser ret = new Laser("#FF0000", null, 100, null, 40, 30, this);
     return ret;
   }
   //*******************Erstellung der Raumschiffes****************************//
@@ -162,7 +162,7 @@ class SpielModel {
     List<Koordinaten> r1Form = [new Koordinaten(-2, 1), new Koordinaten(-2, -1),
                                 new Koordinaten(-1, 0)];
     Raumschiff r1 = new Raumschiff("#58FAAC", new Koordinaten(4, 9),
-        300, r1Form, 80, 100, 3, 100);
+        300, r1Form, 80, 100, this, 100);
 
     return ret;
   }
@@ -207,11 +207,11 @@ class SpielModel {
       false, false, false, false];
 
     GegnerRaumschiff gr1 = new GegnerRaumschiff("#8904B1", new Koordinaten(28, 4),
-        200, gr1Form, 40, 40, 1,
+        200, gr1Form, 40, 40, this,
         100, bmGr1, amGr1);
 
     GegnerRaumschiff gr2 = new GegnerRaumschiff("#8904B1", new Koordinaten(28, 12),
-        200, gr1Form, 40, 40, 1,
+        200, gr1Form, 40, 40, this,
         100, bmGr2, amGr1);
 
     ret.add(gr1);

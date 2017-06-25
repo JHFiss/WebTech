@@ -1,5 +1,6 @@
 import 'koerperform.dart';
 import 'koordinaten.dart';
+import 'spielModel.dart';
 
 ///Klasse Raumschiff die Koerperform erweitert
 class Raumschiff extends Koerperform {
@@ -7,11 +8,11 @@ class Raumschiff extends Koerperform {
 
   ///Raumschiff Konstruktor von Raumschiff
   ///Ruft den super Konstruktor von koerperform auf
-  Raumschiff(String _farbe, Koordinaten _position, int _id,
-              List<Koordinaten> _form, int _damageValue, int _lifeValue,
-              int _lebenAnzahl, this._laserIDref)
+  Raumschiff(String _farbe, Koordinaten _position, int _id, List<Koordinaten> _form,
+              int _damageValue, int _lifeValue, SpielModel _model,
+              this._laserIDref)
       : super(_farbe, _position, _id, _form, _damageValue, _lifeValue,
-              _lebenAnzahl);
+              _model);
 
   ///Returned die Laser ID referenze
   int get getLaserIDref => this._laserIDref;

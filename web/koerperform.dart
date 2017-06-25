@@ -11,7 +11,7 @@ abstract class Koerperform {
   int _damageValue = 0;
   int _lifeValue = 0;
   SpielModel _model;
-//Penis
+
   ///Der Konstruktor von Koerperform
   Koerperform(this._farbe, this._position, this._id, this._form,
       this._damageValue, this._lifeValue, this._model);
