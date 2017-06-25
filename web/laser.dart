@@ -12,13 +12,14 @@ class Laser extends Koerperform {
 
   //TODO Implementieren
   @override
-  void _setPosition() {
+  void setPosition() {
 
   }
 
   //TODO zzt Pseudocode, für korrekte Implementierung muessen collisionDetection und setPosition funktionieren
+  @override
   void onTick() {
-    this._setPosition();
+    this.setPosition();
     this.collisionDetection();
   }
 }

@@ -24,7 +24,7 @@ abstract class Koerperform {
 
   ///Ersetzt die Position durch den neu gegebenen Wert
   //TODO In Abgeleiteten Klassen überschreiben, muss hier nicht Implementiert werden
-  void _setPosition();
+  void setPosition();
 
   ///Rechnet einen Integer wert auf das aktuelle Leben an
   ///Rueckgabewert gibt an, ob diese Koerperform zerstört wurde
@@ -42,6 +42,7 @@ abstract class Koerperform {
 
   ///Updatet das raumschiff auf den nächsten Tick (konkrete Implementierung in den Kindklassen
   void onTick();
+
 
   ///Erkennt Kollisionen des Raumschiffs
   void collisionDetection() {

@@ -174,37 +174,15 @@ class SpielModel {
                                   new Koordinaten(1, -1)];
 
     //HEHEHE das wird lustig alle raumschiffe zu erstellen :)
-    //TODO willst du nicht lieber relative Positionen nehmen, anstatt absoluter?
-    List<Koordinaten> bmGr1 = [new Koordinaten(27, 4), new Koordinaten(26, 4),
-    new Koordinaten(25, 4), new Koordinaten(24, 4), new Koordinaten(23, 4),
-    new Koordinaten(22, 4), new Koordinaten(21, 4), new Koordinaten(20, 4),
-    new Koordinaten(20, 3), new Koordinaten(20, 4), new Koordinaten(20, 5),
-    new Koordinaten(20, 4), new Koordinaten(19, 4), new Koordinaten(18, 4),
-    new Koordinaten(17, 4), new Koordinaten(16, 4), new Koordinaten(15, 4),
-    new Koordinaten(14, 4), new Koordinaten(13, 4), new Koordinaten(13, 5),
-    new Koordinaten(13, 6), new Koordinaten(13, 7), new Koordinaten(13, 6),
-    new Koordinaten(12, 6), new Koordinaten(11, 6), new Koordinaten(10, 6),
-    new Koordinaten(9, 6), new Koordinaten(8, 6), new Koordinaten(7, 6),
-    new Koordinaten(6, 6), new Koordinaten(5, 6), new Koordinaten(4, 6),
-    new Koordinaten(3, 6), new Koordinaten(2, 6), new Koordinaten(1, 6), ];
+    List<Koordinaten> bmGr1 = [new Koordinaten(-1, 0), new Koordinaten(-1, 0),
+    new Koordinaten(0, -1), new Koordinaten(0, -1), new Koordinaten(-1, 0),
+    new Koordinaten(-1, 0), new Koordinaten(0, 1), new Koordinaten(0, 1) ];
 
-    List<Koordinaten> bmGr2 = [new Koordinaten(27, 12), new Koordinaten(26, 12),
-    new Koordinaten(25, 12), new Koordinaten(24, 12), new Koordinaten(23, 12),
-    new Koordinaten(22, 12), new Koordinaten(21, 12), new Koordinaten(20, 12),
-    new Koordinaten(20, 11), new Koordinaten(20, 12), new Koordinaten(20, 13),
-    new Koordinaten(20, 12), new Koordinaten(19, 12), new Koordinaten(18, 12),
-    new Koordinaten(17, 12), new Koordinaten(16, 12), new Koordinaten(15, 12),
-    new Koordinaten(14, 12), new Koordinaten(13, 12), new Koordinaten(13, 13),
-    new Koordinaten(13, 14), new Koordinaten(13, 15), new Koordinaten(13, 14),
-    new Koordinaten(12, 14), new Koordinaten(11, 14), new Koordinaten(10, 14),
-    new Koordinaten(9, 14), new Koordinaten(8, 14), new Koordinaten(7, 14),
-    new Koordinaten(6, 14), new Koordinaten(5, 14), new Koordinaten(4, 14),
-    new Koordinaten(3, 14), new Koordinaten(2, 14), new Koordinaten(1, 14), ];
+    List<Koordinaten> bmGr2 = [new Koordinaten(-1, 0), new Koordinaten(-1, 0),
+    new Koordinaten(0, 1), new Koordinaten(0, 1), new Koordinaten(-1, 0),
+    new Koordinaten(-1, 0), new Koordinaten(0, -1), new Koordinaten(0, -1) ];
 
-    List<bool> amGr1 = [false, false, true, false, true, false, true, false,
-      false, false, true, false, true, false, true, false, false, false,
-      true, false, true, false, false, true, false, true, false, false, true,
-      false, false, false, false];
+    List<bool> amGr1 = [false, false, true, false, true];
 
     GegnerRaumschiff gr1 = new GegnerRaumschiff("#8904B1", new Koordinaten(28, 4),
         200, gr1Form, 40, 40, this,
