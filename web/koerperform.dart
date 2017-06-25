@@ -30,7 +30,19 @@ abstract class Koerperform {
   ///Rueckgabewert gibt an, ob diese Koerperform zerstört wurde
   bool updateLife(int addLifeValue) {
     this._lifeValue += addLifeValue;
-    return this._lifeValue <= 0;
+    if (this._lifeValue <= 0) {
+      for (int i = 0; i < _form.length; i++) {
+        int x = this._position.getX + this._form[i].getX;
+        int y = this._position.getY + this._form[i].getY;
+        for (int a = 0; a < _model.spielfeld[x][y].length; a++) {
+          if (_model.spielfeld[x][y][a] == this._id) {
+            _model.spielfeld[x][y].removeAt(a);
+          }
+        }
+      }
+      return true;
+    }
+    return false;
   }
 
   ///Returned das damageValue

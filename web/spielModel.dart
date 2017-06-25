@@ -85,9 +85,29 @@ class SpielModel {
 
   }
   ///Entfernt die Koerperform mit der uebergebenen id
-  //TODO konkrete Implementierung
   void despawnEntity(int id) {
-
+    if (id < 200) {
+      for (int i = 0; i < _laser.length; i++) {
+        if (_laser[i].getID == id) {
+          _laser.removeAt(i);
+          return;
+        }
+      }
+    } else if (id < 300) {
+      for (int i = 0; i < _gegnerRS.length; i++) {
+        if (_gegnerRS[i].getID == id) {
+          _gegnerRS.removeAt(i);
+          return;
+        }
+      }
+    } else if (id < 400) {
+      for (int i = 0; i < _spielerRS.length; i++) {
+        if (_spielerRS[i].getID == id) {
+          _spielerRS.removeAt(i);
+          return;
+        }
+      }
+    }
   }
 
   ///updated das Leben eines Raumschiffes
