@@ -47,14 +47,18 @@ class SpielModel {
   }
 
   //TODO ungetester RawCode, Code für Spielerraumschiff fehlt
-  void updateSpielfeld() {
-    _laser.forEach((r) {
+  void updateSpielfeld(Koordinaten rsKoordinaten) {
+    _laser.forEach((l) {
       //TODO drunk, fix later; jk koerperform anpassen
-      r.onTick();
+      l.onTick(null);
     });
 
-    _gegnerRS.forEach((rs) {
-      rs.onTick();
+    _gegnerRS.forEach((grs) {
+      grs.onTick(null);
+    });
+
+    _spielerRS.forEach((rs) {
+      rs.onTick(rsKoordinaten);
     });
   }
 

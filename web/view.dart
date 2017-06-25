@@ -21,7 +21,7 @@ class View {
 
   ///Updatet die Tabelle
   //TODO Implementieren und Übergabeparameter überlegen
-  void updateView(String richtung) {
+  void updateView() {
 
   }
 

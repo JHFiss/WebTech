@@ -10,6 +10,6 @@ void main() {
   SpielModel _model = new SpielModel(32, 18);
   View _view = new View(_model);
   Controller controller = new Controller(_view);
-  _view.updateView("");
+  _view.updateView();
   controller.start();
 }

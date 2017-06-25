@@ -18,7 +18,7 @@ class Laser extends Koerperform {
 
   //TODO zzt Pseudocode, für korrekte Implementierung muessen collisionDetection und setPosition funktionieren
   @override
-  void onTick() {
+  void onTick(Koordinaten koordinaten) {
     this.setPosition();
     this.collisionDetection();
   }

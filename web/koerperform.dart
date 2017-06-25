@@ -53,7 +53,7 @@ abstract class Koerperform {
   int get getID => this._id;
 
   ///Updatet das raumschiff auf den nächsten Tick (konkrete Implementierung in den Kindklassen
-  void onTick();
+  void onTick(Koordinaten koordinaten);
 
 
   ///Erkennt Kollisionen des Raumschiffs

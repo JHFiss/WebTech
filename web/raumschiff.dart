@@ -26,7 +26,7 @@ class Raumschiff extends Koerperform {
   //TODO zzt Pseudocode, für korrekte Implementierung muessen collisionDetection und setPosition funktionieren
   //TODO Spielergesteuertes Raumschiff, Steuervariablen müssen uebergeben werden
   @override
-  void onTick() {
+  void onTick(Koordinaten koordinaten) {
     this.setPosition();
   }
 }
