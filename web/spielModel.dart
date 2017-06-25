@@ -90,6 +90,62 @@ class SpielModel {
 
   }
 
+  ///updated das Leben eines Raumschiffes
+  void updateLife(int id, int value) {
+    if (id < 200) {
+      for (int i = 0; i < _laser.length; i++) {
+        if (_laser[i].getID == id) {
+          if (_laser[i].updateLife(value)) {
+            despawnEntity(id);
+          }
+          return;
+        }
+      }
+    } else if (id < 300) {
+      for (int i = 0; i < _gegnerRS.length; i++) {
+        if (_gegnerRS[i].getID == id) {
+          if (_gegnerRS[i].updateLife(value)) {
+            despawnEntity(id);
+          }
+          return;
+        }
+      }
+    } else if (id < 400) {
+      for (int i = 0; i < _spielerRS.length; i++) {
+        if (_spielerRS[i].getID == id) {
+          if (_spielerRS[i].updateLife(value)) {
+            despawnEntity(id);
+          }
+          return;
+        }
+      }
+    }
+  }
+
+  ///gibt den Schadenswert einer Koerperform zurück
+  int getDamageValue(int id) {
+    if (id < 200) {
+      for (int i = 0; i < _laser.length; i++) {
+        if (_laser[i].getID == id) {
+          return _laser[i].getDamageValue;
+        }
+      }
+    } else if (id < 300) {
+      for (int i = 0; i < _gegnerRS.length; i++) {
+        if (_gegnerRS[i].getID == id) {
+          return _gegnerRS[i].getDamageValue;
+        }
+      }
+    } else if (id < 400) {
+      for (int i = 0; i < _spielerRS.length; i++) {
+        if (_spielerRS[i].getID == id) {
+          return _spielerRS[i].getDamageValue;
+        }
+      }
+    }
+    return 0;
+  }
+
   //////////////////Ab hier erstellung der Testdaten////////////////////////////
   //Id reichweitern           //
   //Laser             100-199 //

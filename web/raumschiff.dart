@@ -26,6 +26,5 @@ class Raumschiff extends Koerperform {
   //TODO Spielergesteuertes Raumschiff, Steuervariablen müssen uebergeben werden
   void onTick() {
     this._setPosition();
-    this.collisionDetection();
   }
 }
