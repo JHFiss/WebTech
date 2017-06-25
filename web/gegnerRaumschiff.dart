@@ -34,6 +34,5 @@ class GegnerRaumschiff extends Raumschiff{
   //TODO zzt Pseudocode, für korrekte Implementierung muessen collisionDetection und setPosition funktionieren
   void onTick() {
     this._setPosition();
-    this.collisionDetection();
   }
 }
