@@ -61,7 +61,7 @@ abstract class Koerperform {
     for (int i = 0; i < _form.length; i++) {
       int x = this._position.getX + this._form[i].getX;
       int y = this._position.getY + this._form[i].getY;
-      if (_model.spielfeld[x][y].length > 1) {
+      while (_model.spielfeld[x][y].length > 1) {
         int dv = _model.getDamageValue(_model.spielfeld[x][y][0]);
         _model.updateLife(_model.spielfeld[x][y][0], -this.getDamageValue);
         _model.updateLife(this.getID, -dv);
