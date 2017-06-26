@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Level">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Raumschiffe">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Raumschiff" type="Raumschiff" minOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	
+
+	<xs:complexType name="Raumschiff">
+
+		<xs:attribute name="spawntime" type="xs:int" use="required"/>
+		<xs:sequence>
+			<xs:element name="id"ttype="xs:int"/>
+			<xs:element name="farbe" type="xs:string"/>
+			<xs:element name="Position" type="Koordiante"/>
+			<xs:element name="DamageValue" type="xs:int"/>
+			<xs:element name="lifeValue" type="xs:int"/>			
+			<xs:element name="LaserIDRef" type="xs:int"/>			
+			<xs:element name="Form" type="Koordinaten">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Koordinate" type="Koordinate" minOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Bewegungsmuster" type="Koordinate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Koordinate" type="Koordinate" minOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Angriffsmuster" type="Koordinate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Angriff" type="xs:boolean" minOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		
+	</xs:complexType>
+	
+	<xs:complexType name="Koordinate">
+		<xs:sequence>
+			<xs:element name="X" type="xs:int"/>
+			<xs:element name="Y" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>
