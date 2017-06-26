@@ -19,24 +19,26 @@ class Raumschiff extends Koerperform {
 
   //TODO Implementieren
   void _setPosition(Koordinaten koordinaten) {
-    int xOffest,yOffset = 0;
+    int xOffset,yOffset = 0;
     int xNextMove = 0;  //1=Rechts, 0=stehenbleiben, -1 Links
     int yNextMove = 0;  //1=Oben, 0=stehenbleiben, -1Links
     Koordinaten neueKoor;
 
-    xOffest = koordinaten.getX - getPos.getX;
+    xOffset = koordinaten.getX - getPos.getX;
     yOffset = koordinaten.getY - getPos.getY;
 
-    if(xOffest != 0) {
-      xNextMove = xOffest > 0 ? 1 : -1;
+    if(xOffset != 0) {
+      xNextMove = xOffset > 0 ? 1 : -1;
     }
     if(yOffset != 0) {
       yNextMove = yOffset > 0 ? 1 : -1;
     }
 
     //Erstellt die neue position der koeperform
-    neueKoor = new Koordinaten((getPos.getX + xNextMove), (getPos.getY + yNextMove));
+    //TODO wieder einfügern
+    //neueKoor = new Koordinaten((getPos.getX + xNextMove), (getPos.getY + yNextMove));
 
+    neueKoor = new Koordinaten(5, 5);
     setPosition(neueKoor);  //Ruft das setPosition aus der Koeperform auf
   }
 
@@ -45,10 +47,10 @@ class Raumschiff extends Koerperform {
   @override
   void onTick(Koordinaten koordinaten) {
     _setPosition(koordinaten);
-    _positonToArray();
+    _positonToSpielfeld();
   }
 
-  void _positonToArray() {
+  void _positonToSpielfeld() {
     //Setzt den startwert der koerperform in das spielfeld
     getModel.setSpielfeld(getPos.getX, getPos.getY, getID);
 

@@ -24,7 +24,7 @@ class SpielModel {
   //1.ebene die x Achse
   //2.ebene die y Achse
   //3. ebene die raumschiffe die sich auf dieser Position befinden
-  List<List<List<int>>> spielfeld;
+  List<List<List<int>>> spielfeld = new List(32);
 
   //TODO XML über loader laden
   XMLLoader loader = new XMLLoader(); //Lädt die XML Daten
