@@ -22,7 +22,17 @@ class View {
   ///Updatet die Tabelle
   //TODO Implementieren und Übergabeparameter überlegen
   void updateView() {
-
+    String color = "";
+    TableCellElement e;
+    for(int x = 0; x < 32; x++) {
+      for(int y = 0; y < 18; y++) {
+        if(_spielModel.spielfeld[x][y].first != null) {
+          color = _spielModel.spielfeld[x][x].first.toString();
+          e = querySelector('#gameTable td[col="${x}"][row="${y}"]');
+          e.style.backgroundColor = "#31B404";
+       }
+      }
+    }
   }
 
 }

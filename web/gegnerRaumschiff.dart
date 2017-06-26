@@ -26,15 +26,9 @@ class GegnerRaumschiff extends Raumschiff{
   //TODO noch sinnvoll? Raumschiff schiesst selbst
   bool get getNextSchuss => _angriffsmuster[++_amIterator];
 
-  //TODO Implementieren
-  @override
-  void setPosition() {
-
-  }
 
   //TODO zzt Pseudocode, für korrekte Implementierung muessen collisionDetection und setPosition funktionieren
   @override
   void onTick(Koordinaten koordinaten) {
-    this.setPosition();
   }
 }

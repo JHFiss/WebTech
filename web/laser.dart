@@ -10,16 +10,9 @@ class Laser extends Koerperform {
         int _damageValue, int _lifeValue, SpielModel _model)
       : super(_farbe, _position, _id, _form, _damageValue, _lifeValue, _model);
 
-  //TODO Implementieren
-  @override
-  void setPosition() {
-
-  }
-
   //TODO zzt Pseudocode, für korrekte Implementierung muessen collisionDetection und setPosition funktionieren
   @override
   void onTick(Koordinaten koordinaten) {
-    this.setPosition();
     this.collisionDetection();
   }
 }

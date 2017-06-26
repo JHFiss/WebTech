@@ -10,9 +10,8 @@ class Controller {
 
   SpielModel _spielModel;
   View _view;
-  Controller(View this._view);
-  String event = "";
-  String ret = "";
+  Controller(View this._view, this._spielModel);
+
   void start() {
     Element target;
     Koordinaten ret;
@@ -27,10 +26,12 @@ class Controller {
           querySelector('#start').text = 'row =${target.getAttribute('row')}'
               ' || col =${target.getAttribute('col')}';
           ret = new Koordinaten(int.parse('${target.getAttribute('row')}'), int.parse('${target.getAttribute('col')}'));
-          this._spielModel.updateSpielfeld(ret);
+          this._spielModel.updateSpielfeld(ret);    //triggered das updaten des spielfeldes
+          this._view.updateView();                  //Sagt der view das sie sich aktualiesieren soll
         }
       });
 
     this._view.updateView();
   }
+
 }

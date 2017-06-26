@@ -17,10 +17,9 @@ class SpielModel {
   int _spielfeldX;  //Die Länge der X Achse des Spielfeldes
   int _spielfeldY;  //Die Länge der Y Achse des Spielfeldes
   List<Raumschiff> _spielerRS = new List(); //Die Spieler Raumschiffen
-  List<GegnerRaumschiff> _gegnerRS = [];  //Die Gegner Raumschiffe
+  List<GegnerRaumschiff> _gegnerRS = new List();  //Die Gegner Raumschiffe
   List<Level> _level = new List(); //Die Level
-  List<Laser> _laser = [];  //Die Laser
-
+  List<Laser> _laser = new List();  //Die Laser
   //Das Spielfeld als "3 dimensionale Liste"
   //1.ebene die x Achse
   //2.ebene die y Achse
@@ -44,25 +43,33 @@ class SpielModel {
         spielfeld[i][a] = new List();
       }
     }
+    this._spielerRS = testRaumschiffe();
+    this._gegnerRS = testGegnerRaumschiffe();
+    this._laser = testLaser();
   }
 
   //TODO ungetester RawCode, Code für Spielerraumschiff fehlt
   void updateSpielfeld(Koordinaten rsKoordinaten) {
-    _laser.forEach((l) {
+    //Laser zu testzwecken entfernt
+    /*_laser.forEach((l) {
       //TODO drunk, fix later; jk koerperform anpassen
       l.onTick(null);
-    });
+    });*/
 
-    _gegnerRS.forEach((grs) {
+    //Gegner raumschiffe zu testzwecken entfernt
+    /*_gegnerRS.forEach((grs) {
       grs.onTick(null);
-    });
+    });*/
 
     _spielerRS.forEach((rs) {
       rs.onTick(rsKoordinaten);
     });
   }
 
-
+  //added eine id einer Koerperform in das spielfeld
+  void setSpielfeld(int x, int y , int value) {
+    this.spielfeld[x][y].add(value);
+  }
   //TODO Funktion an neue Funktionalität der Klasse anpassen
   String toHtml() {
     String content = "";
@@ -169,15 +176,28 @@ class SpielModel {
     }
     return 0;
   }
-
+  
+  String getColor(int id) {
+    String ret = "";
+    if(id <200) {
+      ret = this._laser.firstWhere((l) => l.getID == id).getFarbe;
+    }else if(id < 300) {
+      ret = this._gegnerRS.firstWhere((l) => l.getID == id).getFarbe;
+    }else if(id < 400) {
+      ret = this._spielerRS.firstWhere((l) => l.getID == id).getFarbe;
+    }
+    return ret;
+  }
   //////////////////Ab hier erstellung der Testdaten////////////////////////////
   //Id reichweitern           //
   //Laser             100-199 //
   //GegnerRaumschiffe 200-299 //
   //SpielerRaumschiff 300-399 //
   //*******************Erstellung der Laser***********************************//
-  Laser testLaser() {
-    Laser ret = new Laser("#FF0000", null, 100, null, 40, 30, this);
+  List<Laser> testLaser() {
+    List<Laser> ret = new List();
+    Laser l1 = new Laser("#FF0000", null, 100, null, 40, 30, this);
+    ret.add(l1);
     return ret;
   }
   //*******************Erstellung der Raumschiffes****************************//

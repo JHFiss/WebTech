@@ -22,9 +22,9 @@ abstract class Koerperform {
   ///Returned die Farbe des Raumschiffes oder Lasers
   String get getFarbe => this._farbe;
 
-  ///Ersetzt die Position durch den neu gegebenen Wert
-  //TODO In Abgeleiteten Klassen überschreiben, muss hier nicht Implementiert werden
-  void setPosition();
+  void setPosition(Koordinaten koordinaten) {
+    this._position = koordinaten;
+  }
 
   ///Rechnet einen Integer wert auf das aktuelle Leben an
   ///Rueckgabewert gibt an, ob diese Koerperform zerstört wurde
@@ -48,13 +48,14 @@ abstract class Koerperform {
   ///Returned das damageValue
   int get getDamageValue => this._damageValue;
 
-
+  List<Koordinaten> get getForm => this._form;
   ///Returned die ID
   int get getID => this._id;
 
   ///Updatet das raumschiff auf den nächsten Tick (konkrete Implementierung in den Kindklassen
   void onTick(Koordinaten koordinaten);
 
+  SpielModel get getModel => this._model;
 
   ///Erkennt Kollisionen des Raumschiffs
   void collisionDetection() {
