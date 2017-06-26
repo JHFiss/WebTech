@@ -47,12 +47,12 @@ class Raumschiff extends Koerperform {
   @override
   void onTick(Koordinaten koordinaten) {
     _setPosition(koordinaten);
-    _positonToSpielfeld();
+    positonToSpielfeld();
   }
 
-  void _positonToSpielfeld() {
+  /*void _positonToSpielfeld() {
     //Setzt den startwert der koerperform in das spielfeld
-    getModel.setSpielfeld(getPos.getX, getPos.getY, getID);
+    this.getModel.setSpielfeld(getPos.getX, getPos.getY, getID);
 
     //Setzt die offsets der koerperform in das spielfeld
     getForm.forEach((koerperOffset) {
@@ -60,5 +60,5 @@ class Raumschiff extends Koerperform {
                             getPos.getY + koerperOffset.getY, getID);
     });
 
-  }
+  }*/
 }

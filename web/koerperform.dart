@@ -26,6 +26,10 @@ abstract class Koerperform {
     this._position = koordinaten;
   }
 
+  //added eine id einer Koerperform in das spielfeld
+  void setSpielfeld(int x, int y , int value) {
+    this._model.spielfeld[x][y].add(value);
+  }
   ///Rechnet einen Integer wert auf das aktuelle Leben an
   ///Rueckgabewert gibt an, ob diese Koerperform zerstört wurde
   bool updateLife(int addLifeValue) {
@@ -68,5 +72,17 @@ abstract class Koerperform {
         _model.updateLife(this.getID, -dv);
       }
     }
+  }
+
+  void positonToSpielfeld() {
+    //Setzt den startwert der koerperform in das spielfeld
+    this._model.setSpielfeld(getPos.getX, getPos.getY, getID);
+
+    //Setzt die offsets der koerperform in das spielfeld
+    getForm.forEach((koerperOffset) {
+      this._model.setSpielfeld(getPos.getX + koerperOffset.getX,
+          getPos.getY + koerperOffset.getY, getID);
+    });
+
   }
 }
