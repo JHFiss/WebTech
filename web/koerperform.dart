@@ -26,24 +26,22 @@ abstract class Koerperform {
     this._position = koordinaten;
   }
 
-  //added eine id einer Koerperform in das spielfeld
-  void setSpielfeld(int x, int y , int value) {
-    this._model.spielfeld[x][y].add(value);
-  }
   ///Rechnet einen Integer wert auf das aktuelle Leben an
   ///Rueckgabewert gibt an, ob diese Koerperform zerstört wurde
   bool updateLife(int addLifeValue) {
+    List<List<List<int>>> game = _model.getSpielfeld;
     this._lifeValue += addLifeValue;
     if (this._lifeValue <= 0) {
       for (int i = 0; i < _form.length; i++) {
         int x = this._position.getX + this._form[i].getX;
         int y = this._position.getY + this._form[i].getY;
-        for (int a = 0; a < _model.spielfeld[x][y].length; a++) {
-          if (_model.spielfeld[x][y][a] == this._id) {
-            _model.spielfeld[x][y].removeAt(a);
+        for (int a = 0; a < game[x][y].length; a++) {
+          if (game[x][y][a] == this._id) {
+            game[x][y].removeAt(a);
           }
         }
       }
+      _model.setSpielfeld = game;
       return true;
     }
     return false;
@@ -62,18 +60,21 @@ abstract class Koerperform {
   SpielModel get getModel => this._model;
 
   ///Erkennt Kollisionen des Raumschiffs
+  //TODO neu implementiert, muss getestet werden
   void collisionDetection() {
+    List<List<List<int>>> game = _model.getSpielfeld;
     for (int i = 0; i < _form.length; i++) {
       int x = this._position.getX + this._form[i].getX;
       int y = this._position.getY + this._form[i].getY;
-      while (_model.spielfeld[x][y].length > 1) {
-        int dv = _model.getDamageValue(_model.spielfeld[x][y][0]);
-        _model.updateLife(_model.spielfeld[x][y][0], -this.getDamageValue);
+      while (game[x][y].length > 1) {
+        int dv = _model.getDamageValue(game[x][y][0]);
+        _model.updateLife(game[x][y][0], -this.getDamageValue);
         _model.updateLife(this.getID, -dv);
       }
     }
   }
 
+  //TODO anpassen, an neue Funktionalitaet des Models, oder loeschen?
   void positonToSpielfeld() {
     //Setzt den startwert der koerperform in das spielfeld
     this._model.setSpielfeld(getPos.getX, getPos.getY, getID);

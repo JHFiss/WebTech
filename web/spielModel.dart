@@ -24,7 +24,7 @@ class SpielModel {
   //1.ebene die x Achse
   //2.ebene die y Achse
   //3. ebene die raumschiffe die sich auf dieser Position befinden
-  List<List<List<int>>> spielfeld = new List(32);
+  List<List<List<int>>> _spielfeld = new List(32);
 
   //TODO XML über loader laden
   XMLLoader loader = new XMLLoader(); //Lädt die XML Daten
@@ -35,12 +35,12 @@ class SpielModel {
     _spielfeldX = grX;
     _spielfeldY = grY;
 
-    spielfeld = new List(grX);
+    this._spielfeld = new List(grX);
     for (int i = 0; i < grX; i++) {
-      spielfeld[i] = new List(grY);
+      this._spielfeld[i] = new List(grY);
 
       for (int a = 0; a < grY; a++) {
-        spielfeld[i][a] = new List();
+        this._spielfeld[i][a] = new List();
       }
     }
     this._spielerRS = testRaumschiffe();
@@ -66,10 +66,7 @@ class SpielModel {
     });
   }
 
-  //added eine id einer Koerperform in das spielfeld
-  void setSpielfeld(int x, int y , int value) {
-    this.spielfeld[x][y].add(value);
-  }
+
   //TODO Funktion an neue Funktionalität der Klasse anpassen
   String toHtml() {
     String content = "";
@@ -91,9 +88,15 @@ class SpielModel {
         "</tr>";
   }
   ///Spawnt neue Koerperform
-  //TODO konkrete Implementierung
+  //TODO Implementierung ueberpruefen
   void spawnEntity(Koerperform kf) {
-
+    if (kf.getID < 200) {
+      this._laser.add(kf);
+    } else if (kf.getID < 300) {
+      this._gegnerRS.add(kf);
+    } else if (kf.getID < 400) {
+      this._spielerRS.add(kf);
+    }
   }
   ///Entfernt die Koerperform mit der uebergebenen id
   void despawnEntity(int id) {
@@ -176,7 +179,17 @@ class SpielModel {
     }
     return 0;
   }
-  
+
+  ///Getter fuer das Spielfeld, gibt das Spielfeld zurueck
+  List<List<List<int>>> get getSpielfeld {
+    return this._spielfeld;
+  }
+
+  ///setter fuer das Spielfeld, setzt das Spielfeld auf den uebergebenen Wert
+  void set setSpielfeld(List<List<List<int>>> spielfeld) {
+    this._spielfeld = spielfeld;
+  }
+
   String getColor(int id) {
     String ret = "";
     if(id <200) {
