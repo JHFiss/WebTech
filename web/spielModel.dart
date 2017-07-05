@@ -16,10 +16,11 @@ class SpielModel {
 
   int _spielfeldX;  //Die Länge der X Achse des Spielfeldes
   int _spielfeldY;  //Die Länge der Y Achse des Spielfeldes
-  List<Raumschiff> _spielerRS = new List(); //Die Spieler Raumschiffen
-  List<GegnerRaumschiff> _gegnerRS = new List();  //Die Gegner Raumschiffe
+  Map<int, Koerperform> _spielerRS = new Map(); //Die Spieler Raumschiffe
+  Map<int, Koerperform> _gegnerRS = new Map();  //Die Gegner Raumschiffe
+  Map<int, Koerperform> _laser = new Map();  //Die Laser
+
   List<Level> _level = new List(); //Die Level
-  List<Laser> _laser = new List();  //Die Laser
   //Das Spielfeld als "3 dimensionale Liste"
   //1.ebene die x Achse
   //2.ebene die y Achse
@@ -43,6 +44,7 @@ class SpielModel {
         this._spielfeld[i][a] = new List();
       }
     }
+    //Die TestRaumschiffe sollten ins Level ausgelagert werden
     this._spielerRS = testRaumschiffe();
     this._gegnerRS = testGegnerRaumschiffe();
     this._laser = testLaser();
@@ -61,8 +63,8 @@ class SpielModel {
       grs.onTick(null);
     });*/
 
-    _spielerRS.forEach((rs) {
-      rs.onTick(rsKoordinaten);
+    _spielerRS.forEach((i, v) {
+      v.onTick(rsKoordinaten);
     });
   }
 
@@ -91,36 +93,24 @@ class SpielModel {
   //TODO Implementierung ueberpruefen
   void spawnEntity(Koerperform kf) {
     if (kf.getID < 200) {
-      this._laser.add(kf);
+      this._laser.putIfAbsent(kf.getID, () => kf);
     } else if (kf.getID < 300) {
-      this._gegnerRS.add(kf);
+      this._gegnerRS.putIfAbsent(kf.getID, () => kf);
     } else if (kf.getID < 400) {
-      this._spielerRS.add(kf);
+      this._spielerRS.putIfAbsent(kf.getID, () => kf);
     }
   }
   ///Entfernt die Koerperform mit der uebergebenen id
   void despawnEntity(int id) {
     if (id < 200) {
-      for (int i = 0; i < _laser.length; i++) {
-        if (_laser[i].getID == id) {
-          _laser.removeAt(i);
+          _laser.remove(id);
           return;
-        }
-      }
     } else if (id < 300) {
-      for (int i = 0; i < _gegnerRS.length; i++) {
-        if (_gegnerRS[i].getID == id) {
-          _gegnerRS.removeAt(i);
+          _gegnerRS.remove(id);
           return;
-        }
-      }
     } else if (id < 400) {
-      for (int i = 0; i < _spielerRS.length; i++) {
-        if (_spielerRS[i].getID == id) {
-          _spielerRS.removeAt(i);
+          _spielerRS.remove(id);
           return;
-        }
-      }
     }
   }
 
@@ -193,11 +183,11 @@ class SpielModel {
   String getColor(int id) {
     String ret = "";
     if(id <200) {
-      ret = this._laser.firstWhere((l) => l.getID == id).getFarbe;
+      return this._laser[id].getFarbe;
     }else if(id < 300) {
-      ret = this._gegnerRS.firstWhere((l) => l.getID == id).getFarbe;
+      return this._gegnerRS[id].getFarbe;
     }else if(id < 400) {
-      ret = this._spielerRS.firstWhere((l) => l.getID == id).getFarbe;
+      return this._spielerRS[id].getFarbe;
     }
     return ret;
   }
