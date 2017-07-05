@@ -103,71 +103,40 @@ class SpielModel {
   ///Entfernt die Koerperform mit der uebergebenen id
   void despawnEntity(int id) {
     if (id < 200) {
-          _laser.remove(id);
-          return;
+      _laser.remove(id);
+      return;
     } else if (id < 300) {
-          _gegnerRS.remove(id);
-          return;
+      _gegnerRS.remove(id);
+      return;
     } else if (id < 400) {
-          _spielerRS.remove(id);
-          return;
+      _spielerRS.remove(id);
+      return;
     }
   }
 
   ///updated das Leben eines Raumschiffes
   void updateLife(int id, int value) {
     if (id < 200) {
-      for (int i = 0; i < _laser.length; i++) {
-        if (_laser[i].getID == id) {
-          if (_laser[i].updateLife(value)) {
-            despawnEntity(id);
-          }
-          return;
-        }
-      }
+      _laser[id].updateLife(value);
     } else if (id < 300) {
-      for (int i = 0; i < _gegnerRS.length; i++) {
-        if (_gegnerRS[i].getID == id) {
-          if (_gegnerRS[i].updateLife(value)) {
-            despawnEntity(id);
-          }
-          return;
-        }
-      }
+      _gegnerRS[id].updateLife(value);
     } else if (id < 400) {
-      for (int i = 0; i < _spielerRS.length; i++) {
-        if (_spielerRS[i].getID == id) {
-          if (_spielerRS[i].updateLife(value)) {
-            despawnEntity(id);
-          }
-          return;
-        }
-      }
+      _spielerRS[id].updateLife(value);
     }
+    return;
   }
 
   ///gibt den Schadenswert einer Koerperform zurück
   int getDamageValue(int id) {
+    int ret = 0;
     if (id < 200) {
-      for (int i = 0; i < _laser.length; i++) {
-        if (_laser[i].getID == id) {
-          return _laser[i].getDamageValue;
-        }
-      }
+      ret = _laser[id].getDamageValue;
     } else if (id < 300) {
-      for (int i = 0; i < _gegnerRS.length; i++) {
-        if (_gegnerRS[i].getID == id) {
-          return _gegnerRS[i].getDamageValue;
-        }
-      }
+      ret = _gegnerRS[id].getDamageValue;
     } else if (id < 400) {
-      for (int i = 0; i < _spielerRS.length; i++) {
-        if (_spielerRS[i].getID == id) {
-          return _spielerRS[i].getDamageValue;
-        }
-      }
+      ret = _spielerRS[id].getDamageValue;
     }
-    return 0;
+    return ret;
   }
 
   ///Getter fuer das Spielfeld, gibt das Spielfeld zurueck
@@ -183,11 +152,11 @@ class SpielModel {
   String getColor(int id) {
     String ret = "";
     if(id <200) {
-      return this._laser[id].getFarbe;
+      ret = this._laser[id].getFarbe;
     }else if(id < 300) {
-      return this._gegnerRS[id].getFarbe;
+      ret = this._gegnerRS[id].getFarbe;
     }else if(id < 400) {
-      return this._spielerRS[id].getFarbe;
+      ret = this._spielerRS[id].getFarbe;
     }
     return ret;
   }
