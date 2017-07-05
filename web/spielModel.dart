@@ -16,9 +16,9 @@ class SpielModel {
 
   int _spielfeldX;  //Die Länge der X Achse des Spielfeldes
   int _spielfeldY;  //Die Länge der Y Achse des Spielfeldes
-  Map<int, Koerperform> _spielerRS = new Map(); //Die Spieler Raumschiffe
-  Map<int, Koerperform> _gegnerRS = new Map();  //Die Gegner Raumschiffe
-  Map<int, Koerperform> _laser = new Map();  //Die Laser
+  Map<int, Raumschiff> _spielerRS = new Map(); //Die Spieler Raumschiffe
+  Map<int, GegnerRaumschiff> _gegnerRS = new Map();  //Die Gegner Raumschiffe
+  Map<int, Laser> _laser = new Map();  //Die Laser
 
   List<Level> _level = new List(); //Die Level
   //Das Spielfeld als "3 dimensionale Liste"
@@ -44,10 +44,10 @@ class SpielModel {
         this._spielfeld[i][a] = new List();
       }
     }
-    //Die TestRaumschiffe sollten ins Level ausgelagert werden
-    this._spielerRS = testRaumschiffe();
+    //TODO Die TestRaumschiffe sollten ins Level ausgelagert werden
+    /*this._spielerRS = testRaumschiffe();
     this._gegnerRS = testGegnerRaumschiffe();
-    this._laser = testLaser();
+    this._laser = testLaser();*/
   }
 
   //TODO ungetester RawCode, Code für Spielerraumschiff fehlt
@@ -89,17 +89,22 @@ class SpielModel {
         "<td row = '${0}' col = '${2}'></td>"
         "</tr>";
   }
-  ///Spawnt neue Koerperform
-  //TODO Implementierung ueberpruefen
-  void spawnEntity(Koerperform kf) {
-    if (kf.getID < 200) {
-      this._laser.putIfAbsent(kf.getID, () => kf);
-    } else if (kf.getID < 300) {
-      this._gegnerRS.putIfAbsent(kf.getID, () => kf);
-    } else if (kf.getID < 400) {
-      this._spielerRS.putIfAbsent(kf.getID, () => kf);
-    }
+  ///Spawnt neuen Laser
+  //TODO Implementierung anpassen
+  void spawnLaser(Laser l) {
+      this._laser.putIfAbsent(l.getID, () => l);
   }
+
+  ///Spawnt neues Spieler Raumschiff
+  void spawnSpielerRaumschiff(Raumschiff rs) {
+    this._spielerRS.putIfAbsent(rs.getID, () => rs);
+  }
+
+  ///Spawnt neues Gegner Raumschiff
+  void spawnGegnerRaumschiff(GegnerRaumschiff rs) {
+    this._gegnerRS.putIfAbsent(rs.getID, () => rs);
+  }
+
   ///Entfernt die Koerperform mit der uebergebenen id
   void despawnEntity(int id) {
     if (id < 200) {
