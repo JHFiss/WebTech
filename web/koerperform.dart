@@ -22,6 +22,8 @@ abstract class Koerperform {
   ///Returned die Farbe des Raumschiffes oder Lasers
   String get getFarbe => this._farbe;
 
+  ///aktualisiert die Position
+  //TODO sinnvoll?
   void setPosition(Koordinaten koordinaten) {
     this._position = koordinaten;
   }
@@ -32,20 +34,26 @@ abstract class Koerperform {
     List<List<List<int>>> game = _model.getSpielfeld;
     this._lifeValue += addLifeValue;
     if (this._lifeValue <= 0) {
-      for (int i = 0; i < _form.length; i++) {
-        int x = this._position.getX + this._form[i].getX;
-        int y = this._position.getY + this._form[i].getY;
-        for (int a = 0; a < game[x][y].length; a++) {
-          if (game[x][y][a] == this._id) {
-            game[x][y].removeAt(a);
-          }
-        }
-      }
+      game = this.deleteFromGame(game);
       this.onDestruction();
       _model.setSpielfeld = game;
       return true;
     }
     return false;
+  }
+
+  ///entfernt dieses Objekt aus dem Spielfeld
+  List<List<List<int>>> deleteFromGame(List<List<List<int>>> game) {
+    for (int i = 0; i < _form.length; i++) {
+      int x = this._position.getX + this._form[i].getX;
+      int y = this._position.getY + this._form[i].getY;
+      for (int a = 0; a < game[x][y].length; a++) {
+        if (game[x][y][a] == this._id) {
+          game[x][y].removeAt(a);
+        }
+      }
+    }
+    return game;
   }
 
   ///Methode, die bei Zerstörung einer Koerperform aufgerufen wird und Eventhandling betreibt
