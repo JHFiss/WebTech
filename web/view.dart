@@ -20,15 +20,14 @@ class View {
   }
 
 
-  ///Updatet die Tabelle
-  //TODO Implementieren und Übergabeparameter überlegen
+  ///Updatet die Tabelle in der View
   void updateView() {
     TableCellElement e;
     this._spielfeld = _spielModel.getSpielfeld;
     for(int x = 0; x < 32; x++) {
       for(int y = 0; y < 18; y++) {
           e = querySelector('#gameTable td[col="${x}"][row="${y}"]');
-          e.style.backgroundColor = "rgba(255,0,0, 0.3)";
+          e.style.backgroundColor = "rgba(40,0,0, 0.3)";
           try{
             e.style.backgroundColor = this._spielModel.getColor(this._spielfeld[x][y][0]);
           }catch(e) {
