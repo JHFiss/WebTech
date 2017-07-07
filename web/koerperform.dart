@@ -41,10 +41,16 @@ abstract class Koerperform {
           }
         }
       }
+      this.onDestruction();
       _model.setSpielfeld = game;
       return true;
     }
     return false;
+  }
+
+  ///Methode, die bei Zerstörung einer Koerperform aufgerufen wird und Eventhandling betreibt
+  void onDestruction() {
+
   }
 
   ///Returned das damageValue
@@ -73,17 +79,5 @@ abstract class Koerperform {
       }
     }
   }
-
-  //TODO anpassen, an neue Funktionalitaet des Models, oder loeschen?
-  void positonToSpielfeld() {
-    //Setzt den startwert der koerperform in das spielfeld
-    this._model.setSpielfeld(getPos.getX, getPos.getY, getID);
-
-    //Setzt die offsets der koerperform in das spielfeld
-    getForm.forEach((koerperOffset) {
-      this._model.setSpielfeld(getPos.getX + koerperOffset.getX,
-          getPos.getY + koerperOffset.getY, getID);
-    });
-
-  }
+  
 }
