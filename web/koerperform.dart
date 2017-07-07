@@ -68,6 +68,8 @@ abstract class Koerperform {
         }
       }
     }
+    this._model.despawnEntity(this.getID);
+
     return game;
   }
 
