@@ -22,14 +22,11 @@ abstract class Koerperform {
   ///Returned die Farbe des Raumschiffes oder Lasers
   String get getFarbe => this._farbe;
 
-  ///aktualisiert die Position
-  //TODO sinnvoll?
-  void setPosition(Koordinaten koordinaten) {
-    this._position = koordinaten;
-  }
+
 
   ///Rechnet einen Integer wert auf das aktuelle Leben an
   ///Rueckgabewert gibt an, ob diese Koerperform zerstört wurde
+  //TODO testen
   bool updateLife(int addLifeValue) {
     List<List<List<int>>> game = _model.getSpielfeld;
     this._lifeValue += addLifeValue;
@@ -42,7 +39,25 @@ abstract class Koerperform {
     return false;
   }
 
+  ///Bewegt ein Raumschiff, trägt es aus den alten Feldern aus, in die neuen ein und aktualisiert die position und das Spielfeld
+  //TODO testen
+  List<List<List<int>>> move(List<List<List<int>>> game, Koordinaten k) {
+    for (int i = 0; i < _form.length; i++) {
+      int x = this._position.getX + this._form[i].getX;
+      int y = this._position.getY + this._form[i].getY;
+      for (int a = 0; a < game[x][y].length; a++) {
+        if (game[x][y][a] == this._id) {
+          game[x][y].removeAt(a);
+        }
+      }
+      game[x + k.getX][y + k.getY].add(this.getID);
+    }
+    this._position.setKoordinaten(this._position.getX + k.getX, this._position.getY + k.getY);
+    return game;
+  }
+
   ///entfernt dieses Objekt aus dem Spielfeld
+  //TODO testen
   List<List<List<int>>> deleteFromGame(List<List<List<int>>> game) {
     for (int i = 0; i < _form.length; i++) {
       int x = this._position.getX + this._form[i].getX;
