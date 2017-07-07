@@ -20,14 +20,15 @@
 	<xs:complexType name="Raumschiff">
 
 		<xs:attribute name="spawntime" type="xs:int" use="required"/>
+
 		<xs:sequence>
-			<xs:element name="id"ttype="xs:int"/>
+			<xs:element name="id" type="xs:int"/>
 			<xs:element name="farbe" type="xs:string"/>
-			<xs:element name="Position" type="Koordiante"/>
+			<xs:element name="Position" type="Koordinate"/>
 			<xs:element name="DamageValue" type="xs:int"/>
 			<xs:element name="lifeValue" type="xs:int"/>			
 			<xs:element name="LaserIDRef" type="xs:int"/>			
-			<xs:element name="Form" type="Koordinaten">
+			<xs:element name="Form">
 				<xs:complexType>
 					<xs:sequence>
 						<xs:element name="Koordinate" type="Koordinate" minOccurs="1"/>
