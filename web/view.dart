@@ -7,6 +7,7 @@ import 'gegnerRaumschiff.dart';
 ///Die Klasse View die Genutzt wird um die Tabelle darzustellen
 class View {
   SpielModel _spielModel;
+  List<List<List<int>>> _spielfeld;
   ///Konstruktor der View
   //TODO Implementieren, verstehen
   View(SpielModel this._spielModel) {
@@ -22,16 +23,17 @@ class View {
   ///Updatet die Tabelle
   //TODO Implementieren und Übergabeparameter überlegen
   void updateView() {
-    String color = "";
     TableCellElement e;
+    this._spielfeld = _spielModel.getSpielfeld;
     for(int x = 0; x < 32; x++) {
       for(int y = 0; y < 18; y++) {
-        //if(_spielModel.spielfeld[x][y].length > 0) {
-          //color = _spielModel.spielfeld[x][x].first.toString();
           e = querySelector('#gameTable td[col="${x}"][row="${y}"]');
-          e.style.backgroundColor = "#31B404";
-          e.text = _spielModel.spielfeld[x][y].length.toString();
-       //}
+          e.style.backgroundColor = "rgba(255,0,0, 0.3)";
+          try{
+            e.style.backgroundColor = this._spielModel.getColor(this._spielfeld[x][y][0]);
+          }catch(e) {
+            //Vorbildliches Exeptionhandling
+          }
       }
     }
   }
