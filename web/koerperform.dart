@@ -85,6 +85,11 @@ abstract class Koerperform {
   ///Returned die ID
   int get getID => this._id;
 
+  ///setzt die ID auf einen anderen Wert
+  void set setID(int id) {
+    this._id = id;
+  }
+
   ///Updatet das raumschiff auf den nächsten Tick (konkrete Implementierung in den Kindklassen
   void onTick(Koordinaten koordinaten);
 

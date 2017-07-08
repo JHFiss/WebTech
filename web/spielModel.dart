@@ -92,17 +92,17 @@ class SpielModel {
   ///Spawnt neuen Laser
   //TODO Implementierung anpassen
   void spawnLaser(Laser l) {
-      this._laser.putIfAbsent(l.getID, () => l);
+      this._laser[l.getID] = l;
   }
 
   ///Spawnt neues Spieler Raumschiff
   void spawnSpielerRaumschiff(Raumschiff rs) {
-    this._spielerRS.putIfAbsent(rs.getID, () => rs);
+    this._spielerRS[rs.getID] = rs;
   }
 
   ///Spawnt neues Gegner Raumschiff
   void spawnGegnerRaumschiff(GegnerRaumschiff rs) {
-    this._gegnerRS.putIfAbsent(rs.getID, () => rs);
+    this._gegnerRS[rs.getID] = rs;
   }
 
   ///Entfernt die Koerperform mit der uebergebenen id
